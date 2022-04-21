@@ -1,0 +1,21 @@
+.header{
+  display: flex;
+  max-width: 1200px;
+  padding: 50px 10px;
+  margin: 0 auto;
+align-items: center;
+}
+
+.image{
+  max-width: 400px;
+  object-fit: cover;
+  margin-right: 10px;
+  
+}
+
+.title{
+  font-family: 'Square Peg', cursive;
+  font-size: 60px;
+  color: #123c69;
+  width: 40%;
+}
