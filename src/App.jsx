@@ -1,29 +1,33 @@
-// hooks
-import { useEffect } from 'react';
+// router
 import { Route, Routes } from 'react-router-dom';
-import { useFetchAllContacts } from './hooks/useFetchAllContacts';
 
+// components
 import { Home, ViewContact, CreateContact } from './pages';
 import { Header } from './components/header/Header';
 
+// material ui
+import { createTheme, ThemeProvider } from '@mui/material';
+
 
 function App() {
-  let { contacts, getAllCOntacts } = useFetchAllContacts();
+  const theme = createTheme({
+    typography: {
+      fontFamily: ['Poppins', 'sans-serif'].join(',')
+    }
+  });
 
-  useEffect(() => {
-    getAllCOntacts();
-  }, []);
 
-  // console.log(contacts);
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/viewcontact/:id' element={<ViewContact />} />
-        <Route path='/createcontact/:id' element={<CreateContact />} />
-      </Routes>
 
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/viewcontact/:id' element={<ViewContact />} />
+          <Route path='/createcontact/:id' element={<CreateContact />} />
+        </Routes>
+      </ThemeProvider>
     </div>
   );
 }

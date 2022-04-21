@@ -1,9 +1,11 @@
 .header{
+  margin-bottom: 50px;
+}
+
+.header_inner{
   display: flex;
-  max-width: 1200px;
-  padding: 50px 10px;
-  margin: 0 auto;
-align-items: center;
+  padding: 50px 0;
+ align-items: center;
 }
 
 .image{
@@ -18,4 +20,32 @@ align-items: center;
   font-size: 60px;
   color: #123c69;
   width: 40%;
+  position: relative;
+}
+
+.title span{
+  position: absolute;
+}
+.title span:first-child{
+  right: -100px;
+  bottom: 50px;
+  transform: rotate(-60deg);
+}
+
+.title span:nth-child(2){
+  right: -180px;
+  bottom: 30px;
+  transform: rotate(60deg);
+}
+
+.title span:nth-child(3){
+  right: -140px;
+  bottom: -90px;
+  transform: rotate(60deg);
+}
+
+.title span:nth-child(4){
+  right: -100px;
+  bottom: -120px;
+  transform: rotate(60deg);
 }
