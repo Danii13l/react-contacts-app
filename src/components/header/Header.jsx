@@ -1,17 +1,11 @@
-
 // css
 import styles from './Header.module.css';
 
 // images
 import contact from '../../assets/images/contact.svg';
 
-
-// aos animation library
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-import { Container } from '@mui/material';
-
-AOS.init();
+// components
+import { Container } from '../container/Container';
 
 export const Header = () => {
 

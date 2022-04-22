@@ -21,8 +21,7 @@
     ],
     "rules": {
         "indent": [
-            "error",
-            2
+            "off"
         ],
         "quotes": [
             "error",
@@ -37,6 +36,12 @@
         ],
         "no-console": [
             "warn"
+        ],
+        "react/display-name": [
+            false,
+            {
+                "ignoreTranspilerName": false
+            }
         ],
         "react/prop-types": "off",
         "linebreak-style": 0,

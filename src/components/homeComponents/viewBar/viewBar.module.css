@@ -1,0 +1,27 @@
+.viewBar{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  align-items:center ;
+}
+
+.viewBar h2{
+  font-size: 30px;
+  color: #123c69;
+}
+
+.inputbox{
+  display: flex;
+  align-items: flex-end;
+}
+
+.input{
+  margin-left: 30px !important;
+
+}
+.input section{
+  color: #123c69;
+}
+.input option{
+  color: #123c69;
+}

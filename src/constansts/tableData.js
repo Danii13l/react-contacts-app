@@ -1,0 +1,1 @@
+export const tableInfo = ['Image', 'Full name', 'Email', 'Phone number', 'Controls'];
