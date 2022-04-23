@@ -38,7 +38,7 @@
             "warn"
         ],
         "react/display-name": [
-            false,
+            0,
             {
                 "ignoreTranspilerName": false
             }

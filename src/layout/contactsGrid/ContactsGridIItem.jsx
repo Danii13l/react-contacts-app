@@ -10,8 +10,7 @@ import styles from './ContactsGrid.module.css';
 import { AiFillIdcard, AiFillMail, AiFillPhone } from 'react-icons/ai';
 
 
-// images
-import avatar from '../../assets/images/avatar.png';
+// function
 import { checkLength } from './../../functions/cheackLength';
 
 export const ContactsGridIItem = ({ photo, name, surname, email, phone }) => {

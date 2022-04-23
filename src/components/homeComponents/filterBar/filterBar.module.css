@@ -25,3 +25,15 @@
 .input option{
   color: #123c69;
 }
+
+.button{
+  background: transparent !important;
+  padding:0 !important;
+}
+
+
+.icon{
+  font-size: 35px;
+  color:#123c69 ;
+}
+

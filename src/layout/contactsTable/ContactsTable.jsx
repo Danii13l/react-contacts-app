@@ -17,6 +17,9 @@ import styles from './ContactsTable.module.css';
 // constants
 import { tableInfo } from '../../constansts/tableData';
 
+// function
+import { checkLength } from './../../functions/cheackLength';
+
 export const ContactsTable = ({ data, deleteContact }) => {
 
   return (
@@ -28,14 +31,14 @@ export const ContactsTable = ({ data, deleteContact }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
-            <TableRow key={row.id} className={styles.table_body}>
+          {data.map((contact) => (
+            <TableRow key={contact.id} className={styles.table_body}>
               <TableCell>
-                <Avatar alt="avatar" src={row.photo} />
+                <Avatar alt="avatar" src={contact.photo} />
               </TableCell>
-              <TableCell>{row.name} {row.surname}</TableCell>
-              <TableCell><a href={`mailto:${row.email}`}>{row.email}</a> </TableCell>
-              <TableCell><a href={`tel:${row.phone}`}>{row.phone}</a> </TableCell>
+              <TableCell>{checkLength(`${contact.name} ${contact.surname}`)}</TableCell>
+              <TableCell><a href={`mailto:${contact.email}`}>{checkLength(contact.email)}</a> </TableCell>
+              <TableCell><a href={`tel:${contact.phone}`}>{checkLength(contact.phone)}</a> </TableCell>
               <TableCell >
                 <Controls />
               </TableCell>

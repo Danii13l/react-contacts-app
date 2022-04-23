@@ -1,5 +1,6 @@
+import React from 'react';
+
 // hoocks
-import { useEffect } from 'react';
 import { useFetchAllContacts } from '../hooks/useFetchAllContacts.js';
 
 // components
@@ -7,27 +8,21 @@ import { Loading } from '../components/loading/Loading';
 import { Error } from '../components/error/Error';
 import { Container } from '../components/container/Container';
 import { ContactsTable } from './../layout/contactsTable/ContactsTable';
-
-// import axios from 'axios';
-import { ViewBar } from '../components/homeComponents/viewBar/viewBar.jsx';
+import { FilterBar } from '../components/homeComponents/filterBar/FilterBar.jsx';
 import { ContactsGrid } from '../layout/contactsGrid/ContactsGrid.jsx';
 
-// redux
-import { useSelector } from 'react-redux';
-
-
-
+export const ContextHome = React.createContext({});
 
 export const Home = () => {
 
   let { contacts, getAllCOntacts, error, loading } = useFetchAllContacts();
 
-  useEffect(() => {
-    getAllCOntacts();
-  }, []);
+  const [search, setSearch] = React.useState('');
+  const [view, setView] = React.useState('table');
 
-
-  const { view } = useSelector(({ layoutView }) => layoutView);
+  React.useEffect(() => {
+    getAllCOntacts(search);
+  }, [search]);
 
   const deleteContact = async (id) => {
     // await axios.delete(`https://62612279327d3896e2751d49.mockapi.io/Contacts/${id}`);
@@ -35,13 +30,24 @@ export const Home = () => {
     return true;
   };
 
+  const changeView = React.useCallback(ev => {
+    setView(ev.target.value);
+  });
+
+  const handleSearch = React.useCallback((ev) => {
+    setSearch(ev.target.value);
+  });
+
   return (
 
     <div className='home'>
       <Container>
-        <ViewBar />
+        <ContextHome.Provider value={{ changeView, handleSearch }}>
+          <FilterBar />
+        </ContextHome.Provider>
         {error && <Error />}
-        {!error && !loading && view === 'table' ? < ContactsTable data={contacts} deleteContact={deleteContact} /> : <ContactsGrid data={contacts} />}
+        {!error && !loading && view === 'table' ? < ContactsTable data={contacts} deleteContact={deleteContact} /> : view === 'grid' ? <ContactsGrid data={contacts} /> : null}
+        {contacts.length === 0 && !error && !loading && 'nothing'}
         {loading && <Loading />}
       </Container>
     </div>

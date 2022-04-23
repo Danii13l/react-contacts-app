@@ -1,1 +1,0 @@
-export const switchLayoutView = (view) => ({ type: 'SWITCH_VIEW', view });
