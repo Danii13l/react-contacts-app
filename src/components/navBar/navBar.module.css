@@ -1,0 +1,19 @@
+.navBar{
+  margin-bottom: 10px;
+}
+
+.navBar_inner{
+  display: flex;
+  justify-content: center;
+}
+
+.link{
+  margin: 0 10px;
+  font-size: 20px;
+  color: #123c69;
+  transition: .5s;
+}
+
+.link:hover{
+  color: #ac3b61;
+}

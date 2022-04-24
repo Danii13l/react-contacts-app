@@ -1,5 +1,5 @@
 import { Home } from './Home';
-import { ViewContact } from './ViewContact';
-import { CreateContact } from './CreateContact';
+import { ViewContact } from './viewContact/ViewContact';
+import { CreateContact } from './createContact/CreateContact';
 
 export { Home, ViewContact, CreateContact };

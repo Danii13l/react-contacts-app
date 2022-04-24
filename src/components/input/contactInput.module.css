@@ -1,0 +1,32 @@
+.inner{
+  display: flex;
+}
+
+.label span{
+  color:#123c6d;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  display: inline-block;
+  border-bottom: 2px solid #123c6d;
+}
+
+.input{
+  margin-bottom: 10px;
+  margin-left: 10px;
+  display: block;
+  padding: 10px;
+  width: 300px;
+  font-size: 16px;
+  color:#fff;
+  border: 1px solid #123c6d;
+  border-radius:5px ;
+  outline: none;
+  background-color: #123c6d3d;
+  transition: .5s;
+}
+
+.input:focus{
+  box-shadow: 1px 3px 10px 3px #123c6d;
+  margin-left: 30px;
+}
+

@@ -36,11 +36,11 @@ export const ContactsTable = ({ data, deleteContact }) => {
               <TableCell>
                 <Avatar alt="avatar" src={contact.photo} />
               </TableCell>
-              <TableCell>{checkLength(`${contact.name} ${contact.surname}`)}</TableCell>
+              <TableCell>{checkLength(`${contact.username} ${contact.surname}`)}</TableCell>
               <TableCell><a href={`mailto:${contact.email}`}>{checkLength(contact.email)}</a> </TableCell>
               <TableCell><a href={`tel:${contact.phone}`}>{checkLength(contact.phone)}</a> </TableCell>
-              <TableCell >
-                <Controls />
+              <TableCell  >
+                <Controls id={contact.id} />
               </TableCell>
             </TableRow>
           ))}

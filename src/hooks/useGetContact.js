@@ -4,20 +4,20 @@ import { useState } from 'react';
 // axios
 import axios from 'axios';
 
-export const useFetchAllContacts = () => {
-  const [contacts, setContacts] = useState([]);
+export const useGetContact = () => {
+  const [contact, setContact] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const getAllCOntacts = async (name = '', page = 1) => {
+  const getContact = async (id) => {
     try {
       setLoading(true);
 
-      let response = await axios.get(`https://62612279327d3896e2751d49.mockapi.io/Contacts?page=${page}&limit=10${name.length > 0 ? `&name=${name}` : ''}`);
+      let response = await axios.get(`https://62612279327d3896e2751d49.mockapi.io/Contacts/${id}`);
       if (response.status > 206) {
         throw new Error('error');
       }
-      setContacts(response.data);
+      setContact(response.data);
     } catch (err) {
       setError(true);
       throw new Error(err);
@@ -26,8 +26,5 @@ export const useFetchAllContacts = () => {
     }
   };
 
-  return { contacts, getAllCOntacts, error, loading };
+  return { contact, getContact, error, loading };
 };
-
-
-// .

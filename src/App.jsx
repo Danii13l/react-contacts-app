@@ -4,9 +4,11 @@ import { Route, Routes } from 'react-router-dom';
 // components
 import { Home, ViewContact, CreateContact } from './pages';
 import { Header } from './components/header/Header';
+import { NavBar } from './components/navBar/NavBar';
 
 // material ui
 import { createTheme, ThemeProvider } from '@mui/material';
+
 
 function App() {
   const theme = createTheme({
@@ -23,14 +25,13 @@ function App() {
 
   return (
     <div className="app">
+      <NavBar />
       <Header />
-
-
       <ThemeProvider theme={theme}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/viewcontact/:id' element={<ViewContact />} />
-          <Route path='/createcontact/:id' element={<CreateContact />} />
+          <Route path='/createcontact' element={<CreateContact />} />
         </Routes>
       </ThemeProvider>
     </div>
