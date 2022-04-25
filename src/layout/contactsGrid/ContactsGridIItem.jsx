@@ -22,7 +22,7 @@ export const ContactsGridIItem = ({ id, photo, username, surname, email, phone }
         <h3><AiFillIdcard /> <span>{checkLength(`${username} ${surname}`)}</span> </h3>
         <h4><AiFillMail /> <a href={`mailto:${email}`}>{checkLength(email)}</a> </h4>
         <h4><AiFillPhone /><a href={`tel:${phone}`}>{checkLength(phone)}</a></h4>
-        <Controls id={id} styles={{ display: 'flex', justifyContent: 'center' }} />
+        <Controls id={id} center />
       </div>
     </div>
   );

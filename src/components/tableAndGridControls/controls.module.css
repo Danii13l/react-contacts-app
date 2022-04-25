@@ -1,0 +1,29 @@
+.controlsBox{
+  display: flex;
+  align-items: center;
+}
+.center{
+  justify-content: center;
+}
+
+.controlsBox a{
+  display: inline-block;
+
+}
+.controlsBox a:first-child{
+margin-left: 0;
+  margin: 0;
+}
+
+.button{
+  margin: 0 5px;
+  display: block;
+}
+
+.button svg{
+
+  fill: #123c6d;
+  font-size: 30px;
+}
+
+

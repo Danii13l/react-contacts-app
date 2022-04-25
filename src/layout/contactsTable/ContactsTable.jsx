@@ -20,7 +20,9 @@ import { tableInfo } from '../../constansts/tableData';
 // function
 import { checkLength } from './../../functions/cheackLength';
 
+
 export const ContactsTable = ({ data, deleteContact }) => {
+
 
   return (
     <TableContainer component={Paper} className={styles.table}>
@@ -31,19 +33,21 @@ export const ContactsTable = ({ data, deleteContact }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((contact) => (
-            <TableRow key={contact.id} className={styles.table_body}>
-              <TableCell>
-                <Avatar alt="avatar" src={contact.photo} />
-              </TableCell>
-              <TableCell>{checkLength(`${contact.username} ${contact.surname}`)}</TableCell>
-              <TableCell><a href={`mailto:${contact.email}`}>{checkLength(contact.email)}</a> </TableCell>
-              <TableCell><a href={`tel:${contact.phone}`}>{checkLength(contact.phone)}</a> </TableCell>
-              <TableCell  >
-                <Controls id={contact.id} />
-              </TableCell>
-            </TableRow>
-          ))}
+          {data.map((contact) => {
+            return (
+              <TableRow key={contact.id} className={styles.table_body}>
+                <TableCell>
+                  <Avatar alt="avatar" src={contact.photo} />
+                </TableCell>
+                <TableCell>{checkLength(`${contact.username} ${contact.surname}`)}</TableCell>
+                <TableCell><a href={`mailto:${contact.email}`}>{checkLength(contact.email)}</a> </TableCell>
+                <TableCell><a href={`tel:${contact.phone}`}>{checkLength(contact.phone)}</a> </TableCell>
+                <TableCell  >
+                  <Controls id={contact.id} deleteContact={deleteContact} />
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </TableContainer>

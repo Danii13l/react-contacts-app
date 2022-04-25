@@ -1,12 +1,22 @@
 // react
 import { useEffect } from 'react';
+
+// router
 import { useParams } from 'react-router-dom';
+
+// material
+import { Avatar } from '@mui/material';
 
 // components
 import { Container } from '../../components/container/Container';
+import { Loading } from '../../components/loading/Loading';
+import { Error } from './../../components/error/Error';
 
 // hooks
 import { useGetContact } from './../../hooks/useGetContact';
+// css
+import styles from './viewContact.module.css';
+
 
 export const ViewContact = () => {
 
@@ -17,26 +27,31 @@ export const ViewContact = () => {
     getContact(id);
   }, []);
 
-
-  console.log(contact);
   return (
-    <div>
-      <Container>
-        <div>
-          <div>
+    <>
+      {loading && <Loading />}
+      {error && <Error />}
+      {!loading && !error && <Container>
+        <div className={styles.view}>
+          <div className={styles.view_info}>
             <h3>Name:<span>{contact.username}</span></h3>
             <h3>Surname:<span>{contact.surname}</span></h3>
-            <h3>Phone:<span>name</span></h3>
-            <h3>Email:<span>name</span></h3>
-            <h3>Birthday:<span>name</span></h3>
-            <h3>Category:<span>name</span></h3>
-            <h3>Added:<span>name</span></h3>
+            <h3>Phone:<span>{contact.phone}</span></h3>
+            <h3>Email:<span>{contact.email}</span></h3>
+            <h3>Birthday:<span>{contact.birthday}</span></h3>
+            <h3>Category:<span>{contact.category}</span></h3>
+            <h3>Added:<span>{contact.createdAt}</span></h3>
           </div>
-          <div>
-            <img src={contact.photo} alt='avatar' />
-          </div>
+          <Avatar
+            alt="Remy Sharp"
+            src={contact.photo}
+            sx={{ width: 300, height: 300 }}
+            className={styles.ava}
+          />
         </div>
-      </Container>
-    </div>
+      </Container>}
+
+
+    </>
   );
 };

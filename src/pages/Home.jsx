@@ -2,6 +2,7 @@ import React from 'react';
 
 // hoocks
 import { useFetchAllContacts } from '../hooks/useFetchAllContacts.js';
+import { useAmountData } from './../hooks/useAmountData';
 
 // components
 import { Loading } from '../components/loading/Loading';
@@ -14,7 +15,9 @@ import { ContactsGrid } from '../layout/contactsGrid/ContactsGrid.jsx';
 
 // material ui
 import Pagination from '@mui/material/Pagination';
-import { useAmountData } from './../hooks/useAmountData';
+
+// axios
+import axios from 'axios';
 
 export const ContextHome = React.createContext({});
 
@@ -27,6 +30,8 @@ export const Home = () => {
   let { contacts, getAllCOntacts, error, loading } = useFetchAllContacts();
   let { lengthData, getLength } = useAmountData();
 
+
+  // насироить при удалении
   React.useEffect(() => {
     getLength();
   }, []);
@@ -37,19 +42,20 @@ export const Home = () => {
   }, [search, page]);
 
 
-  const deleteContact = () => {
-    // await axios.delete(`https://62612279327d3896e2751d49.mockapi.io/Contacts/${id}`);
-    // getAllCOntacts();
-    return true;
+  const deleteContact = (id) => {
+    return async () => {
+      await axios.delete(`https://62612279327d3896e2751d49.mockapi.io/Contacts/${id}`);
+      getAllCOntacts(search, page);
+    };
   };
 
   const changeView = React.useCallback(ev => {
     setView(ev.target.value);
-  });
+  }, [view]);
 
   const handleSearch = React.useCallback((ev) => {
     setSearch(ev.target.value);
-  });
+  }, [search]);
 
   const getPaginationNumber = (ev) => {
     SetPage(ev.target.textContent);
@@ -60,9 +66,9 @@ export const Home = () => {
 
     <div className='home'>
       <Container>
-        <ContextHome.Provider value={{ changeView, handleSearch }}>
+        <ContextHome.Provider value={{ changeView, handleSearch, deleteContact }}>
           <FilterBar />
-          {!error && !loading && view === 'table' ? < ContactsTable data={contacts} deleteContact={deleteContact} /> : view === 'grid' ? <ContactsGrid data={contacts} /> : null}
+          {!error && !loading && view === 'table' ? < ContactsTable data={contacts} /> : view === 'grid' ? <ContactsGrid data={contacts} /> : null}
         </ContextHome.Provider>
         {error && <Error />}
         {contacts.length === 0 && !error && !loading && 'nothing'}

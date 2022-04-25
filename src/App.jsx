@@ -5,9 +5,11 @@ import { Route, Routes } from 'react-router-dom';
 import { Home, ViewContact, CreateContact } from './pages';
 import { Header } from './components/header/Header';
 import { NavBar } from './components/navBar/NavBar';
+import { EditContact } from './pages/editContact/EditContact';
 
 // material ui
 import { createTheme, ThemeProvider } from '@mui/material';
+
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/viewcontact/:id' element={<ViewContact />} />
           <Route path='/createcontact' element={<CreateContact />} />
+          <Route path='/editcontact/:id' element={<EditContact />} />
         </Routes>
       </ThemeProvider>
     </div>

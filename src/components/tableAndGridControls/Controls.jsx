@@ -1,25 +1,26 @@
-// material ui
-import Stack from '@mui/material/Stack';
-import IconButton from '@mui/material/IconButton';
-
+// react
+import { useContext } from 'react';
 // icons
 import { TiUserDelete, TiEyeOutline, TiEdit } from 'react-icons/ti';
+// router
 import { Link } from 'react-router-dom';
+// css
+import styles from './controls.module.css';
+// context
+import { ContextHome } from './../../pages/Home';
 
-export const Controls = ({ id, styles, deleteContact }) => {
+export const Controls = ({ id, center }) => {
+  const { deleteContact } = useContext(ContextHome);
+  // console.log(deleteContact);
   return (<>
-    <Stack direction="row" spacing={2} style={styles}>
-      <IconButton aria-label="delete" color="warning" title="edit contact">
-        <TiEdit />
-      </IconButton>
-
-      <IconButton aria-label="delete" color="success" title="view contact">
-        <Link to={`/viewcontact/${id}`} ><TiEyeOutline style={{ fontSize: 30, color: 'darkgreen' }} /></Link>
-      </IconButton>
-
-      <IconButton aria-label="delete" color="error" title="delete contact" onClick={deleteContact}>
-        <TiUserDelete />
-      </IconButton>
-    </Stack >
+    <div direction="row" spacing={2} className={`${styles.controlsBox} ${center && styles.center}`}>
+      <button className={styles.button} title="edit contact">
+        <Link className={styles.links} to={`/editcontact/${id}`}  ><TiEdit /></Link>
+      </button>
+      <button className={styles.button} title="view contact">
+        <Link className={styles.links} to={`/viewcontact/${id}`}  ><TiEyeOutline /></Link>
+      </button>
+      <button className={`${styles.links} ${styles.button}`} onClick={deleteContact(id)} title="delete contact"> <TiUserDelete /></button>
+    </div >
   </>);
 };

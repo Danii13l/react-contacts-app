@@ -1,76 +1,52 @@
 // react
-// import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+// hooks
+import { useAddContact } from '../../hooks/useAddContact';
 
 // components
-import { Container } from '../../components/container/Container';
-
-// material ui
-import Button from '@mui/material/Button';
-// import { useAddContact } from '../../hooks/useAddContact';
-import { ContactInput } from '../../components/input/ContactInput';
-
-// css
-import styles from './createCOntact.module.css';
-
-// images
-import create from '../../assets/images/create.jpg';
-
-// icons
-import { FaHammer } from 'react-icons/fa';
-
-// переместить в const
-const inputData = [
-  { label: 'Name', name: 'username', type: 'text' },
-  { label: 'Surname', name: 'surname', type: 'text' },
-  { label: 'Phone', name: 'phone', type: 'tel' },
-  { label: 'Email', name: 'email', type: 'email' },
-  { label: 'Category', name: 'category', type: 'text' },
-  { label: 'Birthday', name: 'birthday', type: 'text' },
-];
+import { CreateAndViewLayout } from './../../components/createAndViewPagesLayout/CreateAndViewLayout';
 
 export const CreateContact = () => {
-  // const [state, setState] = useState({
-  //   username: '',
-  //   surname: '',
-  //   birthday: '',
-  //   email: '',
-  //   photo: '',
-  //   category: '',
-  // });
+  const [state, setState] = useState({
+    username: '',
+    surname: '',
+    birthday: '',
+    email: '',
+    photo: '',
+    category: '',
+  });
 
-  // const addContact = useAddContact();
+  const addContact = useAddContact();
+  const [image, setImage] = useState('');
+  const [preview, setPreview] = useState('');
 
-  // function handleInput(ev) {
-  //   return ev.target.name === 'photo' ? setState(state => ({ ...state, [ev.target.name]: ev.target.files[0].name })) : setState(state => ({ ...state, [ev.target.name]: ev.target.value }));
-  //   // console.log(ev.target.files[0].name);
-  // }
+  useEffect(() => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+        setState(state => ({ ...state, photo: reader.result }));
+      };
+      reader.readAsDataURL(image);
+    } else setPreview(null);
+  }, [image]);
+
+
+  const handleInputs = (ev) => {
+    setState(state => ({ ...state, [ev.target.name]: ev.target.value }));
+  };
+
+  const handleFileInput = (ev) => {
+    const file = ev.target.files[0];
+    file && file.type.substr(0, 5) === 'image' ? setImage(file) : setImage(file);
+  };
+
 
   return (
-    <div>
-      <Container>
-        <div className={styles.inner} >
-          <div className={styles.info}>
-            <h2>Create new contact</h2>
-
-            <img src={create} alt="new contact" />
-          </div>
-
-
-
-          <div className={styles.inputbox}>
-            <div>
-              {inputData.map(input => {
-                return <ContactInput key={input.name} {...input} />;
-              })}
-            </div>
-            <Button className={styles.button} variant="contained" >
-              Create <FaHammer className={styles.icon} />
-            </Button>
-          </div>
-
-        </div>
-      </Container>
-    </div>
+    <>
+      <CreateAndViewLayout title='Create new contact' fontPicture="create" />
+    </>
   );
 };
 
