@@ -15,7 +15,7 @@ import { Controls } from '../../components/tableAndGridControls/Controls';
 import styles from './ContactsTable.module.css';
 
 // constants
-import { tableInfo } from '../../constansts/tableData';
+import { tableInfo } from '../../constants/tableData';
 
 // function
 import { checkLength } from './../../functions/cheackLength';

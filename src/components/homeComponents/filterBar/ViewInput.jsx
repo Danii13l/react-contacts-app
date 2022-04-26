@@ -11,12 +11,7 @@ import NativeSelect from '@mui/material/NativeSelect';
 // css
 import styles from './filterBar.module.css';
 
-
-import { ContextHome } from '../../../pages/Home.jsx';
-
-
-export const ViewInput = React.memo(() => {
-  const { changeView } = React.useContext(ContextHome);
+export const ViewInput = ({ changeView }) => {
 
   return (
     <Box sx={{ manWidth: 120 }} className={styles.input}>
@@ -35,5 +30,4 @@ export const ViewInput = React.memo(() => {
     </Box >
   );
 
-}
-);
+};

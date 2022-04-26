@@ -34,8 +34,9 @@
 .inputbox{
   width: 100%;
   display: flex;
-justify-content: space-between;
+  justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .filelinput{
@@ -68,4 +69,15 @@ justify-content: space-between;
 .avatar{
   object-fit: cover;
 
+}
+
+.imgError{
+  background-color: rgb(169, 51, 51);
+  color: #fff;
+  padding: 5px;
+  white-space: nowrap;
+  transform: rotate(90deg);  
+  font-size: 20px;
+  position: absolute;
+  right: -180px;
 }

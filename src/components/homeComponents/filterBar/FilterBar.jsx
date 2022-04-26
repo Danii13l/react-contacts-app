@@ -10,12 +10,14 @@ import { FilterInput } from './FilterInput';
 import styles from './filterBar.module.css';
 
 
-export const FilterBar = React.memo(() => {
+export const FilterBar = React.memo(({ changeView, handleSearch }) => {
+
+
   return (
     <div className={styles.viewBar} >
       <h2>All your contacts</h2>
-      <FilterInput />
-      <ViewInput />
+      <FilterInput handleSearch={handleSearch} />
+      <ViewInput changeView={changeView} />
     </div >
   );
 }

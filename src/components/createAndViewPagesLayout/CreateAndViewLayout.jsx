@@ -1,67 +1,72 @@
+// react
+import { useEffect, useState } from 'react';
+
 // components
 import { Container } from '../container/Container';
-import { ContactInput } from '../input/ContactInput';
-
-// material ui
-import Button from '@mui/material/Button';
-import Avatar from '@mui/material/Avatar';
-
+import { InputsBlock } from './InputsBlock';
+import { AvatarBlock } from './AvatarBlock';
+import { GreetingBlock } from './GreetingBlock';
 // css
 import styles from './createAndViewLayout.module.css';
 
-// images
-import create from '../../assets/images/create.jpg';
-import view from '../../assets/images/view.jpg';
-// icons
-import { FaHammer } from 'react-icons/fa';
-import { MdAddAPhoto } from 'react-icons/md';
+export const CreateAndViewLayout = ({ id, data, addContact, title, fontPicture, updateContact, botton }) => {
 
-// переместить в const
-const inputData = [
-  { label: 'Name', name: 'username', type: 'text' },
-  { label: 'Surname', name: 'surname', type: 'text' },
-  { label: 'Phone', name: 'phone', type: 'tel' },
-  { label: 'Email', name: 'email', type: 'email' },
-  { label: 'Category', name: 'category', type: 'text' },
-  { label: 'Birthday', name: 'birthday', type: 'text' },
-];
+  const [state, setState] = useState({
+    username: '',
+    surname: '',
+    birthday: '',
+    email: '',
+    photo: '',
+    category: '',
+    phone: ''
+  });
 
+  const [errorImg, setErrorImg] = useState(false);
+  const [image, setImage] = useState('');
 
+  useEffect(() => {
+    id && setState(data);
+  }, []);
 
-export const CreateAndViewLayout = ({ title, fontPicture, page, state, addContact, handleFileInput, preview }) => {
+  useEffect(() => {
+    if (image) {
+      if (image.size < 70999) {
+        setErrorImg(false);
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setState(state => ({ ...state, photo: reader.result }));
+        };
+        reader.readAsDataURL(image);
+      } else {
+        setErrorImg(true);
+        setState(state => ({ ...state, photo: '' }));
+      }
+    }
+  }, [image]);
+
+  const handleInputs = (ev) => {
+    setState(state => ({ ...state, [ev.target.name]: ev.target.value }));
+  };
+
+  const handleFileInput = (ev) => {
+    const file = ev.target.files[0];
+    file && file.type.substr(0, 5) === 'image' ? setImage(file) : setImage(file);
+  };
+
+  const sendToServerData = (ev) => {
+    ev.preventDefault();
+    !errorImg && addContact ? addContact(state) : updateContact(id, state);
+  };
+
   return (
     <Container>
       <div className={styles.inner} >
-
-        <div className={styles.info}>
-          <h2>{title}</h2>
-          <img src={fontPicture === 'create' ? create : view} alt="new contact" />
-        </div>
-
+        <GreetingBlock title={title} fontPicture={fontPicture} />
         <div className={styles.inputbox}>
-          <div>
-            {inputData.map(input => {
-              return <ContactInput key={input.name} {...input} />;
-            })}
-
-            <Button className={styles.button} variant="contained" onClick={() => addContact(state)}>
-              Create <FaHammer className={styles.icon} />
-            </Button>
-          </div>
-          <div>
-            <Avatar
-              className={styles.avatar}
-              alt="Remy Sharp"
-              src={preview}
-            />
-            <input className={styles.filelinput} type="file" name='photo' accept='image/*' onChange={handleFileInput} id="file" />
-            <label className={styles.filelabel} htmlFor='file'>
-              Add <MdAddAPhoto />
-            </label>
-          </div>
-
+          <InputsBlock state={state} handleInputs={handleInputs} sendToServerData={sendToServerData} botton={botton} />
+          <AvatarBlock preview={state.photo} handleFileInput={handleFileInput} />
+          {errorImg && <h2 className={styles.imgError}>The picture`s size is too big!</h2>}
         </div>
-
       </div>
     </Container>
   );

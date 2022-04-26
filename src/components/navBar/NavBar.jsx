@@ -10,7 +10,7 @@ export const NavBar = () => {
     <div className={styles.navBar}>
       <Container>
         <div className={styles.navBar_inner}>
-          <Link to="/" className={styles.link}>Home</Link>
+          <Link to="/home" className={styles.link}>Home</Link>
           <Link to="/createcontact" className={styles.link}>New contact</Link>
         </div>
       </Container>

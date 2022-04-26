@@ -1,17 +1,11 @@
 // react
 import React from 'react';
-
-// context
-import { ContextHome } from '../../../pages/Home.jsx';
-
 // material ui
 import TextField from '@mui/material/TextField';
 
 
 
-export const FilterInput = React.memo(() => {
-  // const input = useRef();
-  const { handleSearch } = React.useContext(ContextHome);
+export const FilterInput = React.memo(({ handleSearch }) => {
   return (
     <div>
       <TextField

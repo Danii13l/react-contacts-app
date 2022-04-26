@@ -1,5 +1,5 @@
 // router
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 // components
 import { Home, ViewContact, CreateContact } from './pages';
@@ -31,7 +31,8 @@ function App() {
       <Header />
       <ThemeProvider theme={theme}>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Navigate to='/home' />} />
+          <Route path='/home' element={<Home />} />
           <Route path='/viewcontact/:id' element={<ViewContact />} />
           <Route path='/createcontact' element={<CreateContact />} />
           <Route path='/editcontact/:id' element={<EditContact />} />

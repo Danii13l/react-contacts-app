@@ -1,51 +1,19 @@
-// react
-import { useEffect, useState } from 'react';
-
 // hooks
 import { useAddContact } from '../../hooks/useAddContact';
 
 // components
 import { CreateAndViewLayout } from './../../components/createAndViewPagesLayout/CreateAndViewLayout';
+import { Error } from './../../components/error/Error';
+
 
 export const CreateContact = () => {
-  const [state, setState] = useState({
-    username: '',
-    surname: '',
-    birthday: '',
-    email: '',
-    photo: '',
-    category: '',
-  });
 
-  const addContact = useAddContact();
-  const [image, setImage] = useState('');
-  const [preview, setPreview] = useState('');
-
-  useEffect(() => {
-    if (image) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreview(reader.result);
-        setState(state => ({ ...state, photo: reader.result }));
-      };
-      reader.readAsDataURL(image);
-    } else setPreview(null);
-  }, [image]);
-
-
-  const handleInputs = (ev) => {
-    setState(state => ({ ...state, [ev.target.name]: ev.target.value }));
-  };
-
-  const handleFileInput = (ev) => {
-    const file = ev.target.files[0];
-    file && file.type.substr(0, 5) === 'image' ? setImage(file) : setImage(file);
-  };
-
+  const { addContact, errorAdd } = useAddContact();
 
   return (
     <>
-      <CreateAndViewLayout title='Create new contact' fontPicture="create" />
+      {errorAdd && <Error />}
+      {!errorAdd && <CreateAndViewLayout addContact={addContact} fontPicture="create" title="Create new contact" />}
     </>
   );
 };
