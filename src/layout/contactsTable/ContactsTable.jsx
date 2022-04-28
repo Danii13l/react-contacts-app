@@ -7,22 +7,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
-
 // components
 import { Controls } from '../../components/tableAndGridControls/Controls';
-
 // css
 import styles from './ContactsTable.module.css';
-
 // constants
 import { tableInfo } from '../../constants/tableData';
-
 // function
 import { checkLength } from './../../functions/cheackLength';
 
-
 export const ContactsTable = ({ data, deleteContact }) => {
-
 
   return (
     <TableContainer component={Paper} className={styles.table}>

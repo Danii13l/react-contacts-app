@@ -1,9 +1,7 @@
 // css
 import styles from './Header.module.css';
-
 // images
 import contact from '../../assets/images/contact.svg';
-
 // components
 import { Container } from '../container/Container';
 

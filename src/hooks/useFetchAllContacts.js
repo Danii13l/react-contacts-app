@@ -9,11 +9,11 @@ export const useFetchAllContacts = () => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const getAllCOntacts = async (name = '', page = 1) => {
+  const getAllCOntacts = async (search = '', page = 1) => {
     try {
       setLoading(true);
 
-      let response = await axios.get(`https://62612279327d3896e2751d49.mockapi.io/Contacts?page=${page}&limit=10${name.length > 0 ? `&name=${name}` : ''}`);
+      let response = await axios.get(`https://62612279327d3896e2751d49.mockapi.io/Contacts?page=${page}&limit=10${search.length > 0 ? `&search=${search}` : ''}`);
       if (response.status > 206) {
         throw new Error('error');
       }

@@ -15,7 +15,7 @@ import { FaHammer } from 'react-icons/fa';
 import { inputData } from './../../constants/inputData';
 
 
-export const InputsBlock = ({ handleInputs, addContact, state, sendToServerData, botton }) => {
+export const InputsBlock = ({ handleInputs, state, sendToServerData, botton }) => {
   return (
     <>
       <form onSubmit={sendToServerData}>

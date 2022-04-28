@@ -37,3 +37,17 @@
   color:#123c69 ;
 }
 
+.formelements{
+  display: flex;
+  align-items: flex-end;
+}
+
+.buttonSearch{
+  background-color: #123c6d;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}

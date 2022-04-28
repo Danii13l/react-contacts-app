@@ -8,6 +8,7 @@ import { AvatarBlock } from './AvatarBlock';
 import { GreetingBlock } from './GreetingBlock';
 // css
 import styles from './createAndViewLayout.module.css';
+import { useCallback } from 'react';
 
 export const CreateAndViewLayout = ({ id, data, addContact, title, fontPicture, updateContact, botton }) => {
 
@@ -18,7 +19,8 @@ export const CreateAndViewLayout = ({ id, data, addContact, title, fontPicture, 
     email: '',
     photo: '',
     category: '',
-    phone: ''
+    phone: '',
+    createdAt: Date.now()
   });
 
   const [errorImg, setErrorImg] = useState(false);
@@ -28,6 +30,8 @@ export const CreateAndViewLayout = ({ id, data, addContact, title, fontPicture, 
     id && setState(data);
   }, []);
 
+
+  // checking is an image is currect and appropriate size
   useEffect(() => {
     if (image) {
       if (image.size < 70999) {
@@ -44,15 +48,16 @@ export const CreateAndViewLayout = ({ id, data, addContact, title, fontPicture, 
     }
   }, [image]);
 
+  // getting value from inputs
   const handleInputs = (ev) => {
     setState(state => ({ ...state, [ev.target.name]: ev.target.value }));
   };
-
-  const handleFileInput = (ev) => {
+  // gitting file 
+  const handleFileInput = useCallback((ev) => {
     const file = ev.target.files[0];
     file && file.type.substr(0, 5) === 'image' ? setImage(file) : setImage(file);
-  };
-
+  }, []);
+  // update or add contact
   const sendToServerData = (ev) => {
     ev.preventDefault();
     !errorImg && addContact ? addContact(state) : updateContact(id, state);

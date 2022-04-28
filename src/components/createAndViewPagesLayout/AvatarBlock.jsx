@@ -1,13 +1,13 @@
+import React from 'react';
 // material ui
 import Avatar from '@mui/material/Avatar';
-
 // css
 import styles from './createAndViewLayout.module.css';
-
 // icons
 import { MdAddAPhoto } from 'react-icons/md';
 
-export const AvatarBlock = ({ preview, handleFileInput }) => {
+
+export const AvatarBlock = React.memo(({ preview, handleFileInput }) => {
   return (
     <div>
       <Avatar
@@ -21,4 +21,5 @@ export const AvatarBlock = ({ preview, handleFileInput }) => {
       </label>
     </div>
   );
-};
+}
+); 

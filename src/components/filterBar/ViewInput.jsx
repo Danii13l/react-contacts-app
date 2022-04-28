@@ -1,13 +1,10 @@
 // react
 import React from 'react';
-
-
 // material ui
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
-
 // css
 import styles from './filterBar.module.css';
 

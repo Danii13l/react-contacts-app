@@ -1,15 +1,11 @@
 // components
 import { Controls } from './../../components/tableAndGridControls/Controls';
-
+// material ui
 import Avatar from '@mui/material/Avatar';
-
 // css
 import styles from './ContactsGrid.module.css';
-
 // icons
 import { AiFillIdcard, AiFillMail, AiFillPhone } from 'react-icons/ai';
-
-
 // function
 import { checkLength } from './../../functions/cheackLength';
 

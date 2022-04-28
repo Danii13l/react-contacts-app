@@ -1,5 +1,4 @@
 // css
-
 import styles from './contactInput.module.css';
 
 export const ContactInput = ({ label, type, name, handleInputs, state }) => {

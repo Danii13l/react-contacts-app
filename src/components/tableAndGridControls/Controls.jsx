@@ -11,7 +11,7 @@ import { ContextHome } from './../../pages/Home';
 
 export const Controls = ({ id, center }) => {
   const { deleteContact } = useContext(ContextHome);
-  // console.log(deleteContact);
+
   return (<>
     <div direction="row" spacing={2} className={`${styles.controlsBox} ${center && styles.center}`}>
       <button className={styles.button} title="edit contact">
