@@ -8,7 +8,7 @@ import { Container } from '../container/Container';
 export const Header = () => {
 
   return (
-    <div className={`${styles.header}`} >
+    <header className={`${styles.header}`} >
       <Container>
         <div className={`${styles.header_inner}`}>
           <img className={styles.image} src={contact} alt="contact" />
@@ -20,7 +20,7 @@ export const Header = () => {
           </h1 >
         </div>
       </Container>
-    </div >
+    </header >
   );
 
 };
